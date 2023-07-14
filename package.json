@@ -3,17 +3,20 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
+    "dev": "npx cross-env TAMAGUI_TARGET=web remix dev",
     "start": "remix-serve build"
   },
   "dependencies": {
     "@remix-run/node": "^1.7.2",
     "@remix-run/react": "^1.7.2",
     "@remix-run/serve": "^1.7.2",
+    "@tamagui/config": "^1.39.9",
+    "@tamagui/web": "^1.39.9",
     "expo-linear-gradient": "^11.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-native-web": "^0.18.9"
+    "react-native-web": "^0.18.9",
+    "tamagui": "^1.39.9"
   },
   "devDependencies": {
     "@remix-run/dev": "git+https://github.com/mikeylemmon/remix-dev",

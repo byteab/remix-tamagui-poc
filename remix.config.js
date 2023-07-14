@@ -15,5 +15,12 @@ module.exports = {
     "react-native": require.resolve("react-native-web"),
   },
 
-  serverDependenciesToBundle: ["expo-linear-gradient"],
+  serverDependenciesToBundle: [
+    "expo-linear-gradient",
+    "solito",
+    "react-native-web",
+    "expo-linking",
+    "expo-constants",
+    "expo-modules-core",
+  ],
 };

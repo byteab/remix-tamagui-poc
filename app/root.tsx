@@ -8,8 +8,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
+import { TamaguiProvider } from "@tamagui/web";
 import { useReactNativeStyles } from "./rn-styles";
+import tamaguiConfig from "../tamagui.config";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -17,8 +20,13 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+export async function loader() {
+  return JSON.stringify({ ENV: process.env });
+}
+
 export default function App() {
   const stylesElement = useReactNativeStyles();
+  const data = useLoaderData();
 
   return (
     <html lang="en">
@@ -28,7 +36,16 @@ export default function App() {
         {stylesElement}
       </head>
       <body>
-        <Outlet />
+        <TamaguiProvider config={tamaguiConfig} disableInjectCSS={true}>
+          <Outlet />
+        </TamaguiProvider>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.process = ${JSON.stringify({
+              env: data.ENV,
+            })}`,
+          }}
+        />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
